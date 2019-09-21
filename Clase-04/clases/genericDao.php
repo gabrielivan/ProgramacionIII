@@ -50,7 +50,7 @@
             $json = $this->listar();
             $archivo = fopen($this->archivo, "w");
             $objects = json_decode($json);
-            foreach($objects as $key => $object){ //TODO sacar key
+            foreach($objects as $key => $object){
                 if($object->$idKey == $idValue){
                     $object->$changeKey = $changeValue;
                 }
