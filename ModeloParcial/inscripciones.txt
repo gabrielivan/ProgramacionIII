@@ -1,0 +1,1 @@
+[{"nombreAlumno":"Gabriel","apellidoAlumno":"Salba","emailAlumno":"gsaliba@gmail.com","nombreMateria":"Laboratorio","codigoMateria":"0303"}]
