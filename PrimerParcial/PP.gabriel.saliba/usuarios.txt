@@ -1,0 +1,1 @@
+[{"nombre":"gabriel2","legajo":"1000","email":"gabriel2@gmail.com","clave":"01","fotoUno":".\/imagenes\/1000.jpg","fotoDos":".\/imagenes\/1000.jpg"},{"nombre":"gabriel22","legajo":"1001","email":"gabriel3@gmail.com","clave":"02","fotoUno":".\/imagenes\/1001.jpg","fotoDos":".\/imagenes\/1001.jpg"}]
