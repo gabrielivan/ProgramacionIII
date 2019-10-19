@@ -33,15 +33,16 @@ class cdApi
 
     public function modificarUno($request, $response, $args){ 
         $archivos = $request->getUploadedFiles();
-        $parametros = $request->getParsedBody();
-        var_dump($archivos);    
-        var_dump($parametros);    
+        $parametros = $request->getParsedBody(); 
         $rv = $this->alumnoController->modificarAlumno($archivos, $parametros);
         return $response->getbody()->write($rv);
     }
 
     public function borrarUno($request, $response, $args){ 
-        return $response->getbody()->write("Hello world DELETE");
+        $arrayDeParametros = $request->getParsedBody();
+        $email = $arrayDeParametros['email'];
+        $rv = $this->alumnoController->borrarAlumno($email);
+        return $response->getbody()->write($rv);
     }
 
 

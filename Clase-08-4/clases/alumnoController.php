@@ -41,11 +41,9 @@ class AlumnoController
     //Modifica un alumno del archivo de alumnos
     function modificarAlumno($archivos, $parametros) //El post se usa para obtener los datos del alumno y el files para los datos de la foto
     {
-        
         $alumnoAModificar = $this->alumnosDao->getObjectByKeyCaseInsensitive("email", $parametros["email"]); //obtiene el alumno que se desea modificar mediante la key email y el value de ese email ej: "gaby@gmail.com"
             if(!is_null($alumnoAModificar)) // si se obtuvo
             {
-                $rta === true;
                 /// Me guardo el valor actual de todas la claves del usuario, si el usuario deseará modificarlas, se pisaran.
                 $nombreAux = $alumnoAModificar->nombre;
                 $apellidoAux = $alumnoAModificar->apellido;
@@ -60,6 +58,7 @@ class AlumnoController
                     $nombreAux = $parametros["nombre"];//pisa el nombre del alumno obtenido con el nombre recibido en POST
                 }
                 if (array_key_exists("foto", $archivos)) {
+                    $rta = true;
                     $fechaBkp = date("d-m-Y_H_i");// Me guardo la hora actual
                     $array = explode(".", $alumnoAModificar->foto); //transformo en un array todo lo que este separado por un punto
                     $rutaParaBkp = "./imagenes/backUpFotos/" . 
@@ -67,9 +66,10 @@ class AlumnoController
                     //Backup Imagen
                     rename($alumnoAModificar->foto, $rutaParaBkp);// Hago backup de la foto
                     //Modificacion
+                    $foto = $archivos["foto"];
                     $tmpName = $foto->getClientFilename();
                     $extension = pathinfo($tmpName, PATHINFO_EXTENSION);
-                    $fotoAux = "./imagenes/" . $parametros["email"] . "." . $extension; // Cambio el nombre de la foto y coloco email.extension
+                    $alumnoAModificar->foto = "./imagenes/" . $parametros["email"] . "." . $extension;
                     $foto->moveTo($fotoAux);
                 } 
                 $alumnoAux = new Alumno($nombreAux, $apellidoAux, $parametros["email"], $fotoAux); //se crea un nuevo alumno con los datos ya modificados
@@ -86,6 +86,10 @@ class AlumnoController
                 echo "No se encontro el alumno";
             }
                 
+    }
+
+    function borrarAlumno ($email){
+        return $this->alumnosDao->borrar("email", $email);
     }
 
     //Lista todos los alumnos del archivo de alumnos

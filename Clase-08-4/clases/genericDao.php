@@ -106,19 +106,22 @@ class GenericDao
     public function borrar($idKey, $idValue)
     {
         try {
-            $retorno = false;
+            $retorno = "No se pudo borrar el objeto";
             $objects = json_decode($this->listar()); //Obtiene todos los objetos sin JSON
             $archivo = fopen($this->archivo, "w"); //abre el archivo en modo escritura
             foreach ($objects as $key => $object) { //recorre cada uno de los objetos
                 if ($object->$idKey == $idValue) { //pregunta si el objeto en la key recibida por parametro devuelve el mismo valor recibido por parametro
                     unset($objects[$key]); //borra de objects la key del objeto que coincide con el if de arriba
+                    $retorno = "Se borro correctamente el objeto";
                     break;
                 }
             }
+            fwrite($archivo, json_encode($objects)); // escribe el archivo con el nuevo array sin el objeto que se deseo borrar
+            return $retorno;
 
-            return fwrite($archivo, json_encode($objects)); // escribe el archivo con el nuevo array sin el objeto que se deseo borrar
         } catch (Exception $e) {
             throw new Exception("No se pudo borrar", 0, $e);
+        
         } finally {
             fclose($archivo);
         }
