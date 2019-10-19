@@ -98,6 +98,17 @@ class AlumnoController
         return $this->alumnosDao->listar();
     }
 
+    function mostrarAlumnosExceptoUnCampo($campo)
+    {
+        $alumnosJSON = $this->alumnosDao->listar();
+        $alumnos = json_decode($alumnosJSON); 
+            foreach ($alumnos as $key => $alumno) { 
+                    unset($alumno->$campo);
+                }
+        return json_encode($alumnos);
+
+    }
+
     function isImage($imagen)
     {
         if (explode("/", $imagen["type"])[0] == "image") {

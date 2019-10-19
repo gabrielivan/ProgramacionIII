@@ -17,7 +17,9 @@ $app = new \Slim\App(["settings" => $config]);
 $app->group('/alumno', function() {
     $this->get('/', cdApi::class . ':traerTodos');
 
-    $this->get('/{apellido}', cdApi::class . ':traerUno');
+    $this->get('/{campo}', cdApi::class . ':traerUno');
+    
+    $this->get('//{campo}', cdApi::class . ':traerTodosExceptoUnCampo');
 
     $this->post('/', cdApi::class . ':cargarUno');
     
