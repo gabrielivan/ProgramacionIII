@@ -15,17 +15,10 @@ $config ['addContentLengthHeader'] = false;
 $app = new \Slim\App(["settings" => $config]);
 
 $app->group('/alumno', function() {
-    $this->get('/', cdApi::class . ':traerTodos');
+    
+    $this->get('/{case}/[{campo}]', cdApi::class . ':controllerGet');
 
-    $this->get('/{campo}', cdApi::class . ':traerUno');
-    
-    $this->get('//{campo}', cdApi::class . ':traerTodosExceptoUnCampo');
-
-    $this->post('/', cdApi::class . ':cargarUno');
-    
-    // $this->put('/', cdApi::class . ':modificarUno');
-    
-    $this->post('/{modificar}', cdApi::class . ':modificarUno');
+    $this->post('/{case}', cdApi::class . ':controllerPost');
     
     $this->delete('/', cdApi::class . ':borrarUno');
 
