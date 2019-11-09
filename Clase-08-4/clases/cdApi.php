@@ -8,56 +8,6 @@ class cdApi
         $this->alumnoController = new AlumnoController();
     }
 
-    
-    public function controllerGet($request, $response, $args){ 
-        $case = $args['case'];
-        
-        if(array_key_exists("campo", $args)){
-            $campo = $args['campo'];
-        }
-        else{
-            $campo = null;
-        }
-
-        switch($case){
-            case "traerTodos":
-                $this->traerTodos($request, $response, $args);
-                break;
-            case "traerUno":
-                if($campo != null){
-                    $this->traerUno($request, $response, $args, $campo);
-                }
-                else{
-                    echo "Falta especificar el campo";
-                }
-                break;
-            case "traerTodosExceptoUnCampo":
-                if($campo != null){
-                    $this->traerTodosExceptoUnCampo($request, $response, $args, $campo);
-                }
-                else{
-                    echo "Falta especificar el campo";
-                }
-                break;
-        }
-    }
-
-    public function controllerPost($request, $response, $args){ 
-        $case = $args['case'];
-        
-        switch($case){
-            case "cargarUno":
-                $this->cargarUno($request, $response, $args);
-                break;
-                
-            case "modificarUno":
-                $this->modificarUno($request, $response, $args);
-                break;
-        }
-    }
-    
-    
-    
     public function traerTodos($request, $response, $args){ 
         $alumnos = $this->alumnoController->mostrarAlumnos();
         return $response->getbody()->write($alumnos);

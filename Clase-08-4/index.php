@@ -16,9 +16,13 @@ $app = new \Slim\App(["settings" => $config]);
 
 $app->group('/alumno', function() {
     
-    $this->get('/{case}/[{campo}]', cdApi::class . ':controllerGet');
+    $this->get('/', cdApi::class . ':traerTodos');
+    
+    // $this->get('/', cdApi::class . ':');
 
-    $this->post('/{case}', cdApi::class . ':controllerPost');
+    // $this->post('/', cdApi::class . ':');
+    
+    // $this->post('/', cdApi::class . ':');
     
     $this->delete('/', cdApi::class . ':borrarUno');
 
