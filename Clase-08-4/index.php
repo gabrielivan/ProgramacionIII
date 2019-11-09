@@ -18,9 +18,9 @@ $app->group('/alumno', function() {
     
     $this->get('/', cdApi::class . ':traerTodos');
     
-    // $this->get('/', cdApi::class . ':');
+    $this->get('/{apellido}', cdApi::class . ':traerUno');
 
-    // $this->post('/', cdApi::class . ':');
+    $this->post('/', cdApi::class . ':cargarUno');
     
     // $this->post('/', cdApi::class . ':');
     

@@ -13,14 +13,14 @@ class cdApi
         return $response->getbody()->write($alumnos);
     }
 
-    public function traerTodosExceptoUnCampo($request, $response, $args, $campo){
+    public function traerTodosExceptoUnCampo($request, $response, $args){
         $campo = $campo; 
         $alumnos = $this->alumnoController->mostrarAlumnosExceptoUnCampo($campo);
         return $response->getbody()->write($alumnos);
     }
     
-    public function traerUno($request, $response, $args, $campo){ 
-        $apellido = $campo;
+    public function traerUno($request, $response, $args){ 
+        $apellido = $args["apellido"];
         $alumno = $this->alumnoController->consultarAlumno($apellido);
         return $response->getbody()->write(json_encode($alumno));
     }
