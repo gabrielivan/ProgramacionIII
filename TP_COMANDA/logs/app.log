@@ -108,3 +108,5 @@
 [2019-11-12 05:01:02] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FtraerEncargados, autoridad=localhost%3A8080 [] {"uid":"695419c"}
 [2019-11-12 05:01:16] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargados, autoridad=localhost%3A8080 [] {"uid":"c4ce576"}
 [2019-11-12 05:01:22] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"a53a733"}
+[2019-11-12 05:13:24] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"6dba7e5"}
+[2019-11-12 05:14:17] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"c021dc5"}

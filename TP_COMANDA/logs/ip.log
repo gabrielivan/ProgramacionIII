@@ -174,3 +174,7 @@
 [2019-11-12 05:01:16] UTN FRA LOGGER.INFO: ip =::1 [] {"uid":"85c7e2d"}
 [2019-11-12 05:01:22] UTN FRA LOGGER.INFO: Datos  =PostmanRuntime/7.19.0 [] {"uid":"b0747a2"}
 [2019-11-12 05:01:22] UTN FRA LOGGER.INFO: ip =::1 [] {"uid":"b0747a2"}
+[2019-11-12 05:13:24] UTN FRA LOGGER.INFO: Datos  =PostmanRuntime/7.19.0 [] {"uid":"95ff209"}
+[2019-11-12 05:13:24] UTN FRA LOGGER.INFO: ip =::1 [] {"uid":"95ff209"}
+[2019-11-12 05:14:17] UTN FRA LOGGER.INFO: Datos  =PostmanRuntime/7.19.0 [] {"uid":"50c4b4b"}
+[2019-11-12 05:14:17] UTN FRA LOGGER.INFO: ip =::1 [] {"uid":"50c4b4b"}

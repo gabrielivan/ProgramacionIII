@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2019 a las 05:03:53
+-- Tiempo de generación: 12-11-2019 a las 05:15:30
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -48,7 +48,8 @@ INSERT INTO `encargados` (`id`, `nombre`, `apellido`, `idRol`, `clave`, `usuario
 (2, 'Juan', 'Perez', 1, '1234', 'perezJuanCapo', '2019-11-09 19:18:26', '2019-11-09 19:18:26'),
 (3, 'Pepe', 'Cuenca', 2, '1234', 'pepinCuenca123', '2019-11-09 19:18:37', '2019-11-09 19:18:37'),
 (4, 'Lorenzo', 'Valencia', 4, '1234', 'lorencinHugoAlfredo', '2019-11-09 19:18:47', '2019-11-09 19:18:47'),
-(5, 'Leandro', 'Egea', 5, '1234', 'ElBocho', '2019-11-09 19:18:55', '2019-11-09 19:18:55');
+(5, 'Leandro', 'Egea', 5, '1234', 'ElBocho', '2019-11-09 19:18:55', '2019-11-09 19:18:55'),
+(6, 'Gabriel', 'Saliba', 3, 'gaby1999', 'gaby.ivan', '2019-11-12 08:14:18', '2019-11-12 08:14:18');
 
 -- --------------------------------------------------------
 
@@ -320,7 +321,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT de la tabla `encargados`
 --
 ALTER TABLE `encargados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `estados_mesa`

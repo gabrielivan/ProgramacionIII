@@ -22,7 +22,7 @@ class encargadosControler {
         $encargado = new encargado();
         $encargado->nombre = $datos["nombre"];
         $encargado->apellido = $datos["apellido"];
-        $encargado->rol = $datos["rol"];
+        $encargado->idRol = $datos["rol"];
         $encargado->clave = $datos["clave"];
         $encargado->usuario = $datos["usuario"];
         $encargado->save();
