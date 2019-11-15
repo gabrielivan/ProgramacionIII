@@ -12,15 +12,17 @@ return function (App $app) {
 
 	$app->group('/encargados', function(){
 
-        $this->post('/logIn', encargadosControler::class . ':logIn');
+        $this->post('/iniciarSesion', encargadosControler::class . ':iniciarSesion');
 
         $this->post('/altaEncargado', encargadosControler::class . ':altaEncargado');
 
-        $this->get('/bajaEncargado', encargadosControler::class . ':bajaEncargado');
+        $this->post('/bajaEncargado', encargadosControler::class . ':bajaEncargado');
         
-        $this->get('/modificarEncargado', encargadosControler::class . ':modificarEncargado');
+        $this->post('/modificarEncargado', encargadosControler::class . ':modificarEncargado');
         
         $this->get('/traerEncargados', encargadosControler::class . ':traerEncargados');
+        
+        $this->get('/traerUnEncargado/{id}', encargadosControler::class . ':traerUnEncargado');
 
     });
 

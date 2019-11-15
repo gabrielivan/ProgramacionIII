@@ -95,13 +95,7 @@ function detect()
 	# devolvemos el array de valores
 	return $info;
 }
-
-
-
-
-
-
-
+ 
 	$app->add(function ($req, $res, $next) {
 	    $response = $next($req, $res);
 	    return $response
@@ -110,3 +104,53 @@ function detect()
 	        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 	});
 };
+
+class Middleware{
+	
+	function validarToken($request,$response,$next){
+			
+		$parametros = $request->getParsedBody();
+		$token = "token";
+		
+		if(array_key_exists("token", $parametros) || count((array)$token) > 5){
+			try{			
+				$token = $parametros["token"];
+				if(AutentificadorJWT::VerificarToken($token)){
+					$newResponse = $next($request,$response);
+				}
+			}
+			catch(Exception $e)
+			{
+				$newResponse = $response->withJson("Token invalido",200);
+			}
+		}
+		else{
+			$newResponse = $response->withJson("No se ha recibido un token. Verificar e intentar nuevamente",200);
+		}
+		return $newResponse;
+	}
+	 
+	function EsUnSocio($request,$response,$next){
+		
+		$parametros = $request->getParsedBody();
+		$token = $parametros["token"];
+	
+		if(count((array)$token) > 0){
+			try{
+				$data = AutentificadorJWT::ObtenerData($token);
+				if($data->cargo == "socio")
+				{
+					$newResponse = $next($request,$response);
+				}
+			}
+			catch(Exception $e){
+	
+				$newResponse = $response->withJson("La accion que desea hacer solo la puede cumplir un socio",200);
+			}
+		}
+		else{
+			$newResponse = $response->withJson("No se ha recibido un token. Verificar e intentar nuevamente",200);
+		}
+		return $newResponse;
+	}
+}

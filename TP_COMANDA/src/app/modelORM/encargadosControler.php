@@ -36,11 +36,62 @@ class encargadosControler {
 
     }
 
+    public function modificarEncargado($request, $response, $args)
+    {
+        $arrayDeParametros = $request->getParsedBody();
+        $id = null;
+        $encargado = null;
+        $contador = 0;
+        
+        if (array_key_exists("id", $arrayDeParametros)) {
+            $id = $arrayDeParametros['id'];
+            $encargado = Encargado::find($id); //obtuve el encargado.
+        }
+        if($id != null && $encargado != null){ //pregunto si mandaron bien el id y si se encontro el encargado.
+            
+            if (array_key_exists("nombre", $arrayDeParametros)) {
+                $encargado->nombre = $arrayDeParametros["nombre"];
+                $contador++;
+            }
+            if (array_key_exists("apellido", $arrayDeParametros)) {
+                $encargado->apellido = $arrayDeParametros["apellido"];
+                $contador++;
+            }
+            if (array_key_exists("usuario", $arrayDeParametros)) {
+                $encargado->usuario = $arrayDeParametros["usuario"];
+                $contador++;
+            }
+            if (array_key_exists("idRol", $arrayDeParametros)) {
+                $encargado->idRol = $arrayDeParametros["idRol"];
+                $contador++;  
+            }
+            if (array_key_exists("clave", $arrayDeParametros)) {
+                $encargado->clave = $arrayDeParametros["clave"];
+                $contador++;
+            }
+            if ($contador > 0 && $contador <= 5) {
+                $encargado->save();
+                $newResponse = $response->withJson('Se ha modificado el usuario: ' . $encargado->usuario, 200);
+            } 
+        }
+        else if ($id == null) {
+            $newResponse = $response->withJson('Introduzca un id valido', 200);
+          } 
+          else if ($id != null && $encargado == null) {
+            $newResponse = $response->withJson("No hay un encargado con el id ingresado", 200);
+          } 
+          else {
+            $newResponse = $response->withJson("No hubo modificaciones ", 200);
+          }
+        return $newResponse;
+    }
+
     public function bajaEncargado($request,$response,$args){
         
-        $body = $request->getParams();
+        $parametros = $request->getParsedBody();
+ 
+        $encargado = Encargado::where('usuario','=',$parametros["usuario"])->delete();
         
-        $encargado = encargado::where('usuario','=',$body["usuario"])->delete();
         if($encargado){
             $mensaje=["mensaje"=>"Se dio de baja el usuario"];
             $newResponse = $response->withJson($mensaje,200);
@@ -53,9 +104,51 @@ class encargadosControler {
     }
 
     public function traerEncargados($request, $response, $args){
-        $todosLosEncargados = encargado::all();
+        $todosLosEncargados = Encargado::all();
         $newResponse = $response->withJson($todosLosEncargados, 200);  
         return $newResponse;
     }
+
+    public function traerUnEncargado($request, $response, $args)
+    {
+        $id = $args["id"];
+        $encargado = Encargado::find($id);
+        
+        if($encargado != null)
+        {
+            $newResponse = $response->withJson($encargado, 200);
+        }
+        else
+        {
+            $newResponse = $response->withJson("No existe el encargado", 200);
+        }
+        return $newResponse;
+    }
     
+    public function iniciarSesion($request, $response, $args)
+    {
+        $arrayDeParametros = $request->getParsedBody();
+
+        $encargado=Encargado::where('usuario', '=', $arrayDeParametros["usuario"])
+        ->join('roles','encargados.idRol','roles.id')
+        ->get()
+        ->toArray();
+
+        unset($encargado[0]["created_at"],$encargado[0]["updated_at"]);//quito created y update
+        
+        if(count($encargado) == 1 && $encargado[0]["clave"] == $arrayDeParametros["clave"])
+        {
+            unset($encargado[0]["clave"], $encargado[0]["idRol"]);//quito la clave y el idRol
+
+            $token = AutentificadorJWT::CrearToken($encargado[0]); //me obliga a mandar un array por eso el $encargado[0]
+            $newResponse = $response->withJson($token, 200);
+
+        }
+        else
+        {
+            $newResponse = $response->withJson("No se pudo iniciar sesion, vuelva a intertarlo", 200);
+        }
+
+        return $newResponse;
+    }
 }
