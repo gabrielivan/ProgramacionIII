@@ -142,8 +142,7 @@ class Middleware
 		$log->usuario = $usuario;
 		$log->ip = $ip;
 		$log->fecha = $fecha;
-		$dao = new genericDao("./info.log");
-		$dao->guardar($log);
+		$log->save();
 		$newResponse = $next($request, $response); // Se va a la funcion NEXT
 		//$newResponse->getbody()->write("Log Creado" . " USUARIO: ". $usuario);
 		return $newResponse;

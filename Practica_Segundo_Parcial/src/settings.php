@@ -30,7 +30,7 @@ return [
         'db' => [
            'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'segundoparcial',
+            'database' => 'segundo_parcial',
             'username' => 'root',
             'password' => '',
             'charset'   => 'utf8',

@@ -7,6 +7,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class Egreso extends \Illuminate\Database\Eloquent\Model {  
   protected $usuario;
-  protected $legajo;
+  protected $hora;
 
 }

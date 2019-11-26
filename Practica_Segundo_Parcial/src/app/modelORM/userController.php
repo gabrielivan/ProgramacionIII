@@ -59,13 +59,13 @@ class userController implements IApiControler
         $extension = explode(".", $extension);
         $filenameUno = "./images/users/" . $user->email . "1." . $extension[1];
         $arrayArchivos["fotoUno"]->moveTo($filenameUno);
-        $user->fotoUno =  $filenameUno;
+
         //Foto Dos
         $extension = $arrayArchivos["fotoDos"]->getClientFilename();
         $extension = explode(".", $extension);
         $filenameDos = "./images/users/" . $user->email . "2." . $extension[1];
         $arrayArchivos["fotoDos"]->moveTo($filenameDos);
-        $user->fotoDos =  $filenameDos;
+
 
         $user->save();
 
@@ -75,9 +75,6 @@ class userController implements IApiControler
         unset($userAMostrar["updated_at"]);
         $newResponse = $response->withJson($userAMostrar, 200);
     } 
-    else {
-      $newResponse = $response->withJson("Ocurrio un error al generar el nuevo usuario. Verificar", 200);
-    }
     return $newResponse;
   }
   public function BorrarUno($request, $response, $args)
@@ -120,7 +117,7 @@ class userController implements IApiControler
       $data = AutentificadorJWT::ObtenerData($token);
       $ingreso = new Ingreso;
       $ingreso->usuario = $data->email;
-      $ingreso->legajo = $data->legajo;
+      $ingreso->hora = $fecha = date('H:i:s', $request->getServerParam('REQUEST_TIME'));
 
       //Asi obtengo el ultimo Ingreso::where("usuario", "=", $data->email)->latest('created_at')->get()->first()->toArray();
       $contadorIngresos = Ingreso::where("usuario", "=", $data->email)->select('created_at')->get()->toArray();
@@ -143,7 +140,7 @@ class userController implements IApiControler
       $data = AutentificadorJWT::ObtenerData($token);
       $egreso = new Egreso;
       $egreso->usuario = $data->email;
-      $egreso->legajo = $data->legajo;
+      $egreso->hora = $fecha = date('H:i:s', $request->getServerParam('REQUEST_TIME'));
       //Asi obtengo el ultimo Ingreso::where("usuario", "=", $data->email)->latest('created_at')->get()->first()->toArray();
       $contadorIngresos = Ingreso::where("usuario", "=", $data->email)->select('created_at')->get()->toArray();
       $contadorEgresos = Egreso::where("usuario", "=", $data->email)->select('created_at')->get()->toArray();
@@ -158,6 +155,39 @@ class userController implements IApiControler
       }
       return $newResponse;  
       
+    }
+
+    public function traerTodosLosIngresos($request, $response, $args)
+    {
+        $token = $request->getAttribute('tokenEnviado');
+        $data = AutentificadorJWT::ObtenerData($token);
+        var_dump($data);
+     
+        if($data->legajo <= 100)
+        {
+            $usuarios = Ingreso::distinct()->get(["usuario"])->toArray();
+            if($usuarios != null)
+            {
+                for($i=0;$i<count($usuarios);$i++)
+                {
+                    $ingresos = Ingreso::where("usuario","=", $usuarios[$i]["usuario"])
+                    ->select("usuario","created_at")
+                    ->orderBy("created_at","desc")
+                    ->first()
+                    ->toArray();
+                    $ultimosIngresos[] = $ingresos;
+                }
+                $newResponse = $response->withJson($ultimosIngresos, 200);
+            }
+            else{
+                $newResponse = $response->withJson("No hay ingresos", 200);
+            }
+        }
+        else
+        {
+            $newResponse = $response->withJson("Esta accion solo la puede cumplir un Admin", 200);
+        }
+        return $newResponse;
     }
 
 }

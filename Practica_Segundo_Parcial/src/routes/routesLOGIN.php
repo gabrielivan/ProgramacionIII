@@ -18,6 +18,7 @@ return function (App $app) {
 
     $app->group('/ingreso', function () {   
         $this->post('/',userController::class . ':ingresoUsuario')->add(Middleware::class . ":log");
+        $this->get('/',userController::class . ':traerTodosLosIngresos')->add(Middleware::class . ":validarToken");
     });
 
     $app->group('/egreso', function () {   

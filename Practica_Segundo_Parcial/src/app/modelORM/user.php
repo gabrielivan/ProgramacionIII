@@ -9,6 +9,4 @@ class User extends \Illuminate\Database\Eloquent\Model {
     protected $email;
     protected $legajo;
     protected $clave;
-    protected $fotoUno;
-    protected $fotosDos;
 }
