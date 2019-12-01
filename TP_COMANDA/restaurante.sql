@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2019 a las 05:15:30
+-- Tiempo de generación: 01-12-2019 a las 04:04:29
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -150,23 +150,16 @@ INSERT INTO `mesas` (`id`, `codigoMesa`, `idEstadoMesa`, `updated_at`, `created_
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
   `idEstadoPedido` int(2) NOT NULL,
+  `codigoPedido` varchar(64) COLLATE utf8_spanish2_ci NOT NULL,
   `codigoMesa` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `idEncargado` int(2) NOT NULL,
+  `productos` varchar(128) COLLATE utf8_spanish2_ci NOT NULL,
   `nombreCliente` varchar(40) COLLATE utf8_spanish2_ci NOT NULL,
   `imagen` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `tiempo` int(4) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `idEstadoPedido`, `codigoMesa`, `idEncargado`, `nombreCliente`, `imagen`, `tiempo`, `updated_at`, `created_at`) VALUES
-(1, 1, 'MESA1', 5, 'El pepo', 'pepo.jpg', 33, '2019-11-09 20:09:42', '2019-11-09 20:09:42'),
-(2, 1, 'MESA2', 3, 'El papolin', 'papolin.jpg', 36, '2019-11-09 20:10:20', '2019-11-09 20:10:20'),
-(3, 1, 'MESA1', 5, 'Juancin', 'imagen.jpg', 38, '2019-11-10 23:12:51', '2019-11-10 23:12:51');
 
 -- --------------------------------------------------------
 

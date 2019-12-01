@@ -3,6 +3,10 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use App\Models\AutentificadorJWT;
+
+
+include_once __DIR__ . './app/modelAPI/AutentificadorJWT.php';
 
 return function (App $app) {
   
@@ -95,7 +99,8 @@ function detect()
 	# devolvemos el array de valores
 	return $info;
 }
- 
+
+
 	$app->add(function ($req, $res, $next) {
 	    $response = $next($req, $res);
 	    return $response
@@ -105,52 +110,91 @@ function detect()
 	});
 };
 
-class Middleware{
-	
-	function validarToken($request,$response,$next){
-			
-		$parametros = $request->getParsedBody();
+class Middleware
+{
+	public function validarToken($request,$response,$next){
+		
+		$input = $request;
+        $parametros=$request->getParsedBody();
 		$token = "token";
-		
-		if(array_key_exists("token", $parametros) || count((array)$token) > 5){
-			try{			
-				$token = $parametros["token"];
-				if(AutentificadorJWT::VerificarToken($token)){
-					$newResponse = $next($request,$response);
-				}
-			}
-			catch(Exception $e)
-			{
-				$newResponse = $response->withJson("Token invalido",200);
-			}
-		}
-		else{
-			$newResponse = $response->withJson("No se ha recibido un token. Verificar e intentar nuevamente",200);
-		}
-		return $newResponse;
-	}
-	 
-	function EsUnSocio($request,$response,$next){
-		
-		$parametros = $request->getParsedBody();
-		$token = $parametros["token"];
-	
-		if(count((array)$token) > 0){
+        
+        if(array_key_exists("token", $parametros) || count((array)$token) > 5){
 			try{
-				$data = AutentificadorJWT::ObtenerData($token);
-				if($data->cargo == "socio")
-				{
+				
+				$token = $parametros["token"];
+                if(AutentificadorJWT::VerificarToken($token)){
 					$newResponse = $next($request,$response);
+                }
+            }
+            catch(Exception $e)
+            {
+				$newResponse = $response->withJson("Token invalido",200);
+            }
+        }else{
+			$newResponse = $response->withJson("No se ha recibido un token. Verificar",200);
+        }
+        return $newResponse;
+    }
+	
+	    public function EsSocio($request,$response,$next){
+		
+		$token = "token";
+		$parametros=$request->getParsedBody();
+		$token = $parametros["token"];
+		$info["RUTA"]=$request->getUri()->getPath();
+
+        if(count((array)$token) > 0){
+            try{
+
+                $data = AutentificadorJWT::ObtenerData($token);
+                if($data->cargo == "socio")
+                {
+                    $newResponse = $next($request,$response);
+				}
+				else{
+					$newResponse = $response->withJson("Esta accion solo la puede cumplir un socio",200);
 				}
 			}
-			catch(Exception $e){
-	
-				$newResponse = $response->withJson("La accion que desea hacer solo la puede cumplir un socio",200);
+            catch(Exception $e){
+				
+				$newResponse = $response->withJson("Ha ocurrido un error. Verificar",200);
 			}
+        }else{
+			$newResponse = $response->withJson("No se ha recibido un token. Verificar",200);
 		}
-		else{
-			$newResponse = $response->withJson("No se ha recibido un token. Verificar e intentar nuevamente",200);
-		}
-		return $newResponse;
+        return $newResponse;
 	}
+	
+	public function EsMozo($request,$response,$next){
+		
+		$token = "token";
+		$parametros=$request->getParsedBody();
+		$token = $parametros["token"];
+		$info["RUTA"]=$request->getUri()->getPath();
+
+        if(count((array)$token) > 0){
+            try{
+
+                $data = AutentificadorJWT::ObtenerData($token);
+                if($data->cargo == "mozo" || $data->cargo == "socio" )
+                {
+                    $newResponse = $next($request,$response);
+				}
+				else{
+					$newResponse = $response->withJson("Esta accion solo la puede cumplir un mozo",200);
+				}
+			}
+            catch(Exception $e){
+				
+				$newResponse = $response->withJson("Ha ocurrido un error. Verificar",200);
+			}
+        }else{
+			$newResponse = $response->withJson("No se ha recibido un token. Verificar",200);
+		}
+        return $newResponse;
+    }
+
+
+
 }
+

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models;
+
 use Firebase\JWT\JWT;
 
 class AutentificadorJWT
@@ -7,7 +9,7 @@ class AutentificadorJWT
     private static $claveSecreta = 'ClaveSuperSecreta@';
     private static $tipoEncriptacion = ['HS256'];
     private static $aud = null;
-    
+
     public static function CrearToken($datos)
     {
         $ahora = time();
@@ -17,15 +19,35 @@ class AutentificadorJWT
          + los que quieras ej="'app'=> "API REST CD 2019" 
         */
         $payload = array(
-        	'iat'=>$ahora,
-            'exp' => $ahora + (60),
+            //'iat'=>$ahora,
+            //'exp' => $ahora + (1000),
             'aud' => self::Aud(),
             'data' => $datos,
-            'app'=> "API REST CD UTN FRA"
+            'app' => "API REST CD UTN FRA"
         );
         return JWT::encode($payload, self::$claveSecreta);
     }
-    
+
+    public static function VerificarToken($token)
+    {
+        $valido = false;
+        if (empty($token)) {
+            throw new Exception("El token esta vacio.");
+        }
+
+        try {
+            $decodificado = JWT::decode(
+                $token,
+                self::$claveSecreta,
+                self::$tipoEncriptacion
+            );
+            $valido = true;
+        } catch (Exception $e) {
+            $valido = false;
+        }
+        return $valido;
+    }
+    /*
     public static function VerificarToken($token)
     {
         if(empty($token))
@@ -50,9 +72,9 @@ class AutentificadorJWT
             throw new Exception("No es el usuario valido");
         }
     }
-    
-   
-     public static function ObtenerPayLoad($token)
+
+*/
+    public static function ObtenerPayLoad($token)
     {
         return JWT::decode(
             $token,
@@ -60,7 +82,7 @@ class AutentificadorJWT
             self::$tipoEncriptacion
         );
     }
-     public static function ObtenerData($token)
+    public static function ObtenerData($token)
     {
         return JWT::decode(
             $token,
@@ -71,7 +93,7 @@ class AutentificadorJWT
     private static function Aud()
     {
         $aud = '';
-        
+
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $aud = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -79,10 +101,10 @@ class AutentificadorJWT
         } else {
             $aud = $_SERVER['REMOTE_ADDR'];
         }
-        
+
         $aud .= @$_SERVER['HTTP_USER_AGENT'];
         $aud .= gethostname();
-        
+
         return sha1($aud);
     }
 }

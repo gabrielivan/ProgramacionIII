@@ -14,7 +14,8 @@ return function (App $app) {
 
         $this->post('/iniciarSesion', encargadosControler::class . ':iniciarSesion');
 
-        $this->post('/altaEncargado', encargadosControler::class . ':altaEncargado');
+        $this->post('/altaEncargado', encargadosControler::class . ':altaEncargado')->add(Middleware::class . ":EsSocio")
+                                                                                    ->add(Middleware::class . ":validarToken");
 
         $this->post('/bajaEncargado', encargadosControler::class . ':bajaEncargado');
         

@@ -132,3 +132,80 @@
 [2019-11-15 06:11:15] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FmodificarEncargado, autoridad=localhost%3A8080 [] {"uid":"dfd74b5"}
 [2019-11-15 06:11:53] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FmodificarEncargado, autoridad=localhost%3A8080 [] {"uid":"6aef4f4"}
 [2019-11-15 06:12:20] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FmodificarEncargado, autoridad=localhost%3A8080 [] {"uid":"e0a8b2f"}
+[2019-12-01 04:08:25] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2F, autoridad=localhost%3A8080 [] {"uid":"db45183"}
+[2019-12-01 04:09:37] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"41ffa6d"}
+[2019-12-01 04:09:37] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"41ffa6d"}
+[2019-12-01 04:11:29] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"3f82aa9"}
+[2019-12-01 04:11:29] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"3f82aa9"}
+[2019-12-01 04:12:02] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"1035a8f"}
+[2019-12-01 04:12:02] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"1035a8f"}
+[2019-12-01 04:13:08] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"69473e9"}
+[2019-12-01 04:13:08] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"69473e9"}
+[2019-12-01 04:14:00] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"64f41c0"}
+[2019-12-01 04:14:00] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"64f41c0"}
+[2019-12-01 04:14:03] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados%2F, autoridad=localhost%3A8080 [] {"uid":"a99cfc2"}
+[2019-12-01 04:14:13] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"2777fbe"}
+[2019-12-01 04:14:13] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"2777fbe"}
+[2019-12-01 04:14:51] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerUnEncargado%2F1, autoridad=localhost%3A8080 [] {"uid":"72c2518"}
+[2019-12-01 04:15:47] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerUnEncargado%2F1, autoridad=localhost%3A8080 [] {"uid":"713ca4f"}
+[2019-12-01 04:15:55] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerUnEncargado1, autoridad=localhost%3A8080 [] {"uid":"0a0aaf7"}
+[2019-12-01 04:15:55] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"0a0aaf7"}
+[2019-12-01 04:16:15] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerUnEncargado%257B1%257D, autoridad=localhost%3A8080 [] {"uid":"d067325"}
+[2019-12-01 04:16:15] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"d067325"}
+[2019-12-01 04:16:24] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerUnEncargado%2F1, autoridad=localhost%3A8080 [] {"uid":"214bd28"}
+[2019-12-01 04:17:37] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados%2F, autoridad=localhost%3A8080 [] {"uid":"d55fdab"}
+[2019-12-01 04:17:42] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"517ac47"}
+[2019-12-01 04:17:42] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"517ac47"}
+[2019-12-01 04:18:43] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=traerEncargados, autoridad=localhost%3A8080 [] {"uid":"6842b54"}
+[2019-12-01 04:18:43] UTN FRA LOGGER.INFO: Slim-Skeleton '/' route [] {"uid":"6842b54"}
+[2019-12-01 04:19:52] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FtraerEncargados, autoridad=localhost%3A8080 [] {"uid":"62d6df5"}
+[2019-12-01 04:20:17] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FtraerEncargados%2F1, autoridad=localhost%3A8080 [] {"uid":"9ff42ba"}
+[2019-12-01 04:20:31] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FtraerUnEncargado%2F1, autoridad=localhost%3A8080 [] {"uid":"8f30005"}
+[2019-12-01 04:27:58] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"843105f"}
+[2019-12-01 04:30:11] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FmodificarEncargado, autoridad=localhost%3A8080 [] {"uid":"eaa386b"}
+[2019-12-01 04:30:44] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FmodificarEncargado, autoridad=localhost%3A8080 [] {"uid":"7e1ce38"}
+[2019-12-01 04:31:11] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FmodificarEncargado, autoridad=localhost%3A8080 [] {"uid":"5ae3cd5"}
+[2019-12-01 04:32:39] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"548dcc4"}
+[2019-12-01 04:33:00] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"dbf9037"}
+[2019-12-01 04:38:47] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"d3c099c"}
+[2019-12-01 04:42:18] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"eba0720"}
+[2019-12-01 04:43:42] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"71a94d4"}
+[2019-12-01 04:44:35] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"65d068c"}
+[2019-12-01 04:45:24] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"d2a678b"}
+[2019-12-01 04:46:24] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"1f40865"}
+[2019-12-01 04:48:25] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"a6e1eb4"}
+[2019-12-01 04:49:02] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"c3f1c5f"}
+[2019-12-01 04:50:18] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"8305586"}
+[2019-12-01 04:51:07] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"ef63e9d"}
+[2019-12-01 04:51:36] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"89be4e1"}
+[2019-12-01 04:53:28] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"f4d6670"}
+[2019-12-01 04:53:42] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"2786d5d"}
+[2019-12-01 04:54:04] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"0643a8e"}
+[2019-12-01 04:54:09] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"22883ab"}
+[2019-12-01 04:54:26] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"9804367"}
+[2019-12-01 04:54:45] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"e5d559c"}
+[2019-12-01 04:54:57] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"3afe322"}
+[2019-12-01 04:55:10] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"1b74e98"}
+[2019-12-01 04:55:31] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"2885c7c"}
+[2019-12-01 04:58:40] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"900eb72"}
+[2019-12-01 04:58:57] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"a09a7b2"}
+[2019-12-01 04:59:09] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"c653b84"}
+[2019-12-01 05:07:55] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"3400e92"}
+[2019-12-01 05:08:07] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"e50baf9"}
+[2019-12-01 05:08:19] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"46dd790"}
+[2019-12-01 05:10:26] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"4a0febf"}
+[2019-12-01 05:10:32] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"5414b54"}
+[2019-12-01 05:12:50] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"84729c6"}
+[2019-12-01 05:13:07] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"53b6aa1"}
+[2019-12-01 05:14:41] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"3af8ebb"}
+[2019-12-01 05:14:58] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"8086fb9"}
+[2019-12-01 05:15:05] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"7d3d2da"}
+[2019-12-01 05:21:50] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"f2453f6"}
+[2019-12-01 05:22:27] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"8443e66"}
+[2019-12-01 05:22:56] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"5ae6843"}
+[2019-12-01 05:23:02] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"42991b7"}
+[2019-12-01 05:23:53] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"e5bd28c"}
+[2019-12-01 05:24:32] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"99634aa"}
+[2019-12-01 05:24:59] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"941c7db"}
+[2019-12-01 05:25:24] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"83722a6"}
+[2019-12-01 05:26:44] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FbajaEncargado, autoridad=localhost%3A8080 [] {"uid":"692b75c"}
