@@ -36,7 +36,6 @@ $app->group('/JWT', function () {
             }
           $response->getBody()->write("GET => JWT  ,Funciona el ejemplo , redirecciones a los ejemplos".$token);
             return $response;
-          return $newResponse;
         });
     $this->get('/crearToken/', function (Request $request, Response $response) {
       $datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
@@ -48,28 +47,31 @@ $app->group('/JWT', function () {
     });
 
       $this->get('/devolverPayLoad/', function (Request $request, Response $response) { 
-          $datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
-          $token= AutentificadorJWT::CrearToken($datos); 
-          $payload=AutentificadorJWT::ObtenerPayload($token);
+          $token=$request->getHeader('token');
+        //  $datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
+          //$token= AutentificadorJWT::CrearToken($datos); 
+          $payload=AutentificadorJWT::ObtenerPayload($token[0]);
           $newResponse = $response->withJson($payload, 200); 
           return $newResponse;
       });
 
       $this->get('/devolverDatos/', function (Request $request, Response $response) {
-          $datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
-          $token= AutentificadorJWT::CrearToken($datos); 
-          $payload=AutentificadorJWT::ObtenerData($token);
+        $token=$request->getHeader('token');  
+        //$datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
+          //$token= AutentificadorJWT::CrearToken($datos); 
+          $payload=AutentificadorJWT::ObtenerData($token[0]);
           $newResponse = $response->withJson($payload, 200); 
           return $newResponse;
       });
 
       $this->get('/verificarTokenNuevo/', function (Request $request, Response $response) { 
-          $datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
-          $token= AutentificadorJWT::CrearToken($datos); 
+          //$datos = array('usuario' => 'rogelio@agua.com','perfil' => 'Administrador', 'alias' => "PinkBoy");
+          //$token= AutentificadorJWT::CrearToken($datos); 
+          $token = $request->getHeader('token');  
           $esValido=false;
           try 
           {
-            AutentificadorJWT::verificarToken($token);
+            AutentificadorJWT::verificarToken($token[0]);
             $esValido=true;      
           }
           catch (Exception $e) {      
