@@ -4,12 +4,10 @@ namespace App\Models\ORM;
 
 use App\Models\AutentificadorJWT;
 use App\Models\ORM\Mesa;
-use App\Models\IApiControler;   
 
 
 include_once __DIR__ . '/mesa.php';
 include_once __DIR__ . '../../modelAPI/AutentificadorJWT.php';
-include_once __DIR__ . '../../modelAPI/IApiControler.php';
 
 
 
@@ -17,11 +15,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 
-class mesaController implements IApiControler
+class mesaController
 {
-    public function TraerTodos($request, $response, $args)
+    public function traerMesas($request, $response, $args)
     {
-        $todasLasMesas = Encargado::all();
+        $todasLasMesas = Mesa::all();
         if(count($todasLasMesas) > 0) 
         {
             $newResponse = $response->withJson($todasLasMesas, 200);
@@ -39,21 +37,21 @@ class mesaController implements IApiControler
         
         if($mesaLibre != null)
         {
-            $newResponse = $mesaLibre->codigoMesa;
+            $newResponse = 'La mesa: ' .$mesaLibre->codigoMesa. ' esta lista para usar';
             self::cambiarEstado($mesaLibre->codigoMesa, 1);
         }
         else
         {
-            $newResponse = null;
+            $newResponse = "En este momento no hay ninguna mesa dispomible";
         }
         return $newResponse;
     }
-    public function cambiarEstado($codigoMesa,$nuevoEstado){
+    public function cambiarEstado($codigoMesa, $nuevoEstado){
         $mesa=mesa::where('codigoMesa','=',$codigoMesa)->first();
         $mesa->idEstadoMesa=$nuevoEstado;
         $mesa->save();
     }
-    public function TraerUno($request, $response, $args)
+    public function traerUnaMesa($request, $response, $args)
     {
         $id = $args["id"];
         $mesa = Mesa::find($id);
@@ -67,7 +65,7 @@ class mesaController implements IApiControler
         return $newResponse;
     }
 
-    public function CargarUno($request, $response, $args)
+    public function altaMesa($request, $response, $args)
     {
         $mesa = new Mesa;
         $mesa->codigoMesa = " ";
@@ -75,96 +73,61 @@ class mesaController implements IApiControler
         $mesa->save();
         $mesa->codigoMesa = "MESA-".$mesa->id;
         $mesa->save();
-        //$idEncargadoCargado = $encargadoNuevo->id;
         $newResponse = $response->withJson('Mesa ' . $mesa->codigoMesa. ' cargada', 200);
         return $newResponse;
     }
-    public function BorrarUno($request, $response, $args)
+    public function bajaMesa($request, $response, $args)
     {
         $parametros = $request->getParsedBody();
         $id = $parametros['id'];
-        $encargado = Encargado::find($id);
-        print("Este " . $encargado);
-        if($encargado != null)
+        $mesaEncontrada = Mesa::find($id);
+        
+        if($mesaEncontrada != null)
         {
-            $encargado->delete();
-            $newResponse = $response->withJson('Encargado ' . $id . ' borrado', 200);
+            $mesaEncontrada->delete();
+            $newResponse = $response->withJson('La Mesa: ' . $id . ' fue dada de baja con existo.', 200);
         }
         else{
-            $newResponse = $response->withJson('El encargado no existe', 200);
+            $newResponse = $response->withJson('La Mesa que quiere borrar no existe', 200);
         }
         return $newResponse;
     }
 
-    public function ModificarUno($request, $response, $args)
+    public function modificarMesa($request, $response, $args)
     {
         $arrayDeParametros = $request->getParsedBody();
         $id = null;
-        $encargado = null;
-        $contadorModificaciones = 0;
+        $mesa = null;
+        $contador = 0;
+        
         if (array_key_exists("id", $arrayDeParametros)) {
             $id = $arrayDeParametros['id'];
-            $encargado = Encargado::find($id);
+            $mesa = Mesa::find($id); //obtuve la mesa.
         }
-        if (array_key_exists("nombre", $arrayDeParametros) && $id != null && $encargado != null) {
-            $encargado->nombre = $arrayDeParametros["nombre"];
-            $encargado->usuario = strtolower(substr($arrayDeParametros["nombre"], 0, 1)) . strtolower($encargado->apellido);
-            $contadorModificaciones++;
+        if($id != null && $mesa != null){ //pregunto si mandaron bien el id y si se encontro la mesa.
+            
+            if (array_key_exists("codigoMesa", $arrayDeParametros)) {
+                $mesa->codigoMesa = $arrayDeParametros["codigoMesa"];
+                $contador++;
+            }
+            if (array_key_exists("idEstadoMesa", $arrayDeParametros)) {
+                $mesa->idEstadoMesa = $arrayDeParametros["idEstadoMesa"];
+                $contador++;
+            }
+            if ($contador > 0 && $contador <= 2) {
+                $mesa->save();
+                $newResponse = $response->withJson('Se ha modificado la mesa: ' . $mesa->codigoMesa . ' con existo.', 200);
+            } 
         }
-        if (array_key_exists("apellido", $arrayDeParametros) && $id != null && $encargado != null) {
-            $encargado->apellido = $arrayDeParametros["apellido"];
-            $encargado->usuario = strtolower(substr($encargado->nombre, 0, 1)) . strtolower($arrayDeParametros["apellido"]);
-            $contadorModificaciones++;
-        }
-        if (array_key_exists("usuario", $arrayDeParametros) && $id != null && $encargado != null) {
-            $encargado->usuario = (strtolower(substr($encargado->nombre, 0, 1)) . strtolower($encargado->apellido));
-            $contadorModificaciones++;
-        }
-        if (array_key_exists("idRol", $arrayDeParametros) && $id != null && $encargado != null) {
-            $encargado->idRol = $arrayDeParametros["idRol"];
-            $contadorModificaciones++;  
-        }
-        if (array_key_exists("clave", $arrayDeParametros) && $id != null && $encargado != null) {
-            $encargado->clave = $arrayDeParametros["clave"];
-            $contadorModificaciones++;
-        }
-        if ($contadorModificaciones > 0 && $contadorModificaciones <= 5 && $id != null && $encargado != null) {
-            $encargado->save();
-            $newResponse = $response->withJson('Encargado ' . $encargado->usuario . ' modificado', 200);
-        } else if ($id == null) {
-            $newResponse = $response->withJson('No se introducido un id valido', 200);
-          } else if ($id != null && $encargado == null) {
-            $newResponse = $response->withJson("No hay un encargado con ese ID", 200);
-          } else {
-            $newResponse = $response->withJson("No se ha modificado ningun campo ", 200);
+        else if ($id == null) {
+            $newResponse = $response->withJson('Introduzca un id valido', 200);
+          } 
+          else if ($id != null && $mesa == null) {
+            $newResponse = $response->withJson("No hay una mesa con el id ingresado", 200);
+          } 
+          else {
+            $newResponse = $response->withJson("No hubo modificaciones ", 200);
           }
-        return $newResponse;
-    }
-
-    public function IniciarSesion($request, $response, $args)
-    {
-        $arrayDeParametros = $request->getParsedBody();
-
-        $encargado=Encargado::where('usuario','=',$arrayDeParametros["usuario"])
-        ->join('roles','encargados.idRol','roles.id')
-        ->get()
-        ->toArray();
-
-        unset($encargado[0]["created_at"],$encargado[0]["updated_at"]);
-        
-        if(count($encargado) == 1 && $encargado[0]["clave"] == $arrayDeParametros["clave"])
-        {
-            unset($encargado[0]["clave"], $encargado[0]["idRol"]);
-
-            $token = AutentificadorJWT::CrearToken($encargado[0]);
-            $newResponse = $response->withJson($token, 200);
-
-        }
-        else
-        {
-            $newResponse = $response->withJson("Nop", 200);
-        }
-
         return $newResponse;
     }
 }

@@ -11,16 +11,16 @@ return function (App $app) {
 
     $app->group('/mesas', function () {
 
-        $this->post('/', mesaController::class . ':CargarUno');
+        $this->post('/altaMesa', mesaController::class . ':altaMesa');
 
-        $this->post('/baja', mesaController::class . ':BorrarUno');
+        $this->post('/bajaMesa', mesaController::class . ':bajaMesa');
         
-        $this->post('/modificar', mesaController::class . ':ModificarUno');
+        $this->post('/modificarMesa', mesaController::class . ':modificarMesa');
         
-        $this->get('/', mesaController::class . ':TraerTodos');
+        $this->get('/traerMesas', mesaController::class . ':traerMesas');
         
         $this->get('/obtenerMesaLibre', mesaController::class . ':obtenerMesaLibre');
         
-        $this->get('/{id}', mesaController::class . ':TraerUno');
+        $this->get('/traerUnaMesa{id}', mesaController::class . ':traerUnaMesa');
     });
 };
