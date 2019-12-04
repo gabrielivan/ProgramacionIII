@@ -7,7 +7,6 @@ use App\Models\ORM\pedido_producto;
 
 class pedido_productoController
 {
-
     public function verPendientes($codigo,$encargadoID){
         if($encargadoID==5){
             $data=pedido_producto::join('productos','ticket_productos.producto','productos.id')

@@ -9,7 +9,6 @@ class pedido_producto extends \Illuminate\Database\Eloquent\Model{
     protected $idPedido;
     protected $idProducto;
     protected $table = 'productos_pedidos';
-
 }
 
 ?>

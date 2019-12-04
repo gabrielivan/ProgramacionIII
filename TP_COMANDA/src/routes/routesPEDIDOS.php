@@ -13,17 +13,17 @@ return function (App $app) {
 
     $app->group('/pedidos', function () {
 
-        $this->post('/', pedidoController::class . ':CargarUno')->add(Middleware::class . ":EsMozo")
-        ->add(Middleware::class . ":validarToken");
+        $this->post('/altaPedido', pedidoController::class . ':altaPedido')->add(Middleware::class . ":EsMozo")
+                                                                           ->add(Middleware::class . ":validarToken");
 
         $this->get('/verPendientes', pedido_productoController::class . ':verPedidosPendientes');
 
-        $this->post('/baja', pedidoController::class . ':BorrarUno');
+        $this->post('/bajaPedido', pedidoController::class . ':bajaPedido');
         
-        $this->post('/modificar', pedidoController::class . ':ModificarUno');
+        $this->post('/modificarPedido', pedidoController::class . ':modificarPedido');
         
-        $this->get('/', pedidoController::class . ':TraerTodos');
+        $this->get('/traerPedidos', pedidoController::class . ':traerPedidos');
         
-        $this->get('/traerUno', pedidoController::class . ':TraerUno');
+        $this->get('/traerUnPedido', pedidoController::class . ':traerUnPedido');
     });
 };
