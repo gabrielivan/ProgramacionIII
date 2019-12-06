@@ -25,4 +25,27 @@ class pedido_productoController
         }
         return $data;
     }
+
+    public function cambiarEstado($codigo, $encargadoID, $estadoInicial, $estadoactual)
+    {
+        $ret = false;
+        $data = pedido_producto::where('idEstadoProducto', '=', $estadoInicial)
+            ->where('codigoPedido', '=', $codigo)
+            ->get();
+        foreach ($data as $value) {
+            $prod = Producto::where('id', '=', $value->idProducto)->first();
+            if($encargadoID == 3)
+            {
+                $value->idEstadoProducto = $estadoactual;
+                $value->save();
+                $ret = true;  
+            }
+            else if ($prod->idRol == $encargadoID) {
+                $value->idEstadoProducto = $estadoactual;
+                $value->save();
+                $ret = true;
+            }
+        }
+        return $ret;
+    }
 }

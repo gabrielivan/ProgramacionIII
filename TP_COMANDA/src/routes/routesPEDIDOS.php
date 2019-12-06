@@ -25,5 +25,7 @@ return function (App $app) {
         $this->get('/traerPedidos', pedidoController::class . ':traerPedidos');
         
         $this->get('/traerUnPedido', pedidoController::class . ':traerUnPedido');
+
+        $this->post('/prepararPedido', pedidoController::class . ':prepararPedido') ->add(Middleware::class . ":validarToken");
     });
 };

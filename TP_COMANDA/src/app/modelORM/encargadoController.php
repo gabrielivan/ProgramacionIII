@@ -124,30 +124,21 @@ class encargadoController {
         return $newResponse;
     }
     
-    public function iniciarSesion($request, $response, $args)
+    public function iniciarSesion($request, $response)
     {
         $arrayDeParametros = $request->getParsedBody();
-
-        $encargado=Encargado::where('usuario', '=', $arrayDeParametros["usuario"])
-        ->join('roles','encargados.idRol','roles.id')
-        ->get()
-        ->toArray();
-
-        unset($encargado[0]["created_at"],$encargado[0]["updated_at"]);//quito created y update
-        
-        if(count($encargado) == 1 && $encargado[0]["clave"] == $arrayDeParametros["clave"])
-        {
-            unset($encargado[0]["clave"], $encargado[0]["idRol"]);//quito la clave y el idRol
-
-            $token = AutentificadorJWT::CrearToken($encargado[0]); //me obliga a mandar un array por eso el $encargado[0]
+        $encargado = Encargado::where('usuario', '=', $arrayDeParametros["usuario"])
+            ->join('roles', 'encargados.idRol', 'roles.id')
+            ->select("encargados.id","nombre", "apellido", "usuario", "clave", "idRol", "cargo")
+            ->get()
+            ->toArray();
+        if (count($encargado) == 1 && $encargado[0]["clave"] == $arrayDeParametros["clave"]) {
+            unset($encargado[0]["clave"]);
+            $token = AutentificadorJWT::CrearToken($encargado[0]);
             $newResponse = $response->withJson($token, 200);
-
+        } else {
+            $newResponse = $response->withJson("Nop", 200);
         }
-        else
-        {
-            $newResponse = $response->withJson("No se pudo iniciar sesion, vuelva a intertarlo", 200);
-        }
-
         return $newResponse;
     }
 }
