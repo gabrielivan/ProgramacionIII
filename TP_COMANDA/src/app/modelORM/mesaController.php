@@ -37,12 +37,12 @@ class mesaController
         
         if($mesaLibre != null)
         {
-            $newResponse = 'La mesa: ' .$mesaLibre->codigoMesa. ' esta lista para usar';
+            $newResponse = $mesaLibre->codigoMesa;
             self::cambiarEstado($mesaLibre->codigoMesa, 1);
         }
         else
         {
-            $newResponse = "En este momento no hay ninguna mesa dispomible";
+            $newResponse = null;
         }
         return $newResponse;
     }

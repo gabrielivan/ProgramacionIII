@@ -1155,3 +1155,15 @@
 [2019-12-04 04:27:28] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=mesas%2FobtenerMesaLibre, autoridad=localhost%3A8080 [] {"uid":"9c2f876"}
 [2019-12-04 04:28:00] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=mesas%2FobtenerMesaLibre, autoridad=localhost%3A8080 [] {"uid":"17c8683"}
 [2019-12-04 04:28:13] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=mesas%2FobtenerMesaLibre, autoridad=localhost%3A8080 [] {"uid":"c188697"}
+[2019-12-06 02:14:34] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FtraerPedidos, autoridad=localhost%3A8080 [] {"uid":"ac24e5b"}
+[2019-12-06 02:17:40] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"6f379b4"}
+[2019-12-06 02:18:05] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FaltaPedido, autoridad=localhost%3A8080 [] {"uid":"5730fc2"}
+[2019-12-06 02:19:18] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FbajaPedido, autoridad=localhost%3A8080 [] {"uid":"d292dc7"}
+[2019-12-06 02:19:35] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FaltaPedido, autoridad=localhost%3A8080 [] {"uid":"edbf699"}
+[2019-12-06 02:21:31] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FbajaPedido, autoridad=localhost%3A8080 [] {"uid":"371956e"}
+[2019-12-06 02:21:56] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FaltaPedido, autoridad=localhost%3A8080 [] {"uid":"d8617ec"}
+[2019-12-06 02:22:32] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FaltaPedido, autoridad=localhost%3A8080 [] {"uid":"b68d42a"}
+[2019-12-06 02:24:41] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FaltaPedido, autoridad=localhost%3A8080 [] {"uid":"adac566"}
+[2019-12-06 02:24:49] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FmodificarPedido, autoridad=localhost%3A8080 [] {"uid":"a105f4d"}
+[2019-12-06 02:25:00] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FmodificarPedido, autoridad=localhost%3A8080 [] {"uid":"64fa26f"}
+[2019-12-06 02:25:22] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FbajaPedido, autoridad=localhost%3A8080 [] {"uid":"7751a4a"}
