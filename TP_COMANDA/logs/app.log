@@ -1215,3 +1215,13 @@
 [2019-12-06 05:32:27] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FiniciarSesion, autoridad=localhost%3A8080 [] {"uid":"aa5bd7a"}
 [2019-12-06 05:32:39] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FaltaEncargado, autoridad=localhost%3A8080 [] {"uid":"1472543"}
 [2019-12-06 05:34:10] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=encargados%2FbajaEncargado, autoridad=localhost%3A8080 [] {"uid":"4145744"}
+[2019-12-06 05:45:57] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FprepararPedido, autoridad=localhost%3A8080 [] {"uid":"aeddfde"}
+[2019-12-06 05:47:16] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FprepararPedido, autoridad=localhost%3A8080 [] {"uid":"811cfbb"}
+[2019-12-06 05:50:03] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FterminarPedido, autoridad=localhost%3A8080 [] {"uid":"f13b945"}
+[2019-12-06 05:52:40] UTN FRA LOGGER.INFO: metodo=POST, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FservirPedido, autoridad=localhost%3A8080 [] {"uid":"d9ba418"}
+[2019-12-06 05:57:08] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FpedirCuenta, autoridad=localhost%3A8080 [] {"uid":"0b845be"}
+[2019-12-06 06:01:19] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FcobrarPedido, autoridad=localhost%3A8080 [] {"uid":"c066324"}
+[2019-12-06 06:02:21] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FcobrarPedido, autoridad=localhost%3A8080 [] {"uid":"6ab937b"}
+[2019-12-06 06:04:08] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FcobrarPedido, autoridad=localhost%3A8080 [] {"uid":"6e87006"}
+[2019-12-06 06:05:07] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FcobrarPedido, autoridad=localhost%3A8080 [] {"uid":"cbb10de"}
+[2019-12-06 06:05:59] UTN FRA LOGGER.INFO: metodo=GET, URI=http%3A%2F%2Flocalhost%3A8080%2FTP_COMANDA%2Fpublic, RUTA=pedidos%2FcobrarPedido, autoridad=localhost%3A8080 [] {"uid":"be3c43a"}

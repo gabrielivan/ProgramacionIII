@@ -27,5 +27,17 @@ return function (App $app) {
         $this->get('/traerUnPedido', pedidoController::class . ':traerUnPedido');
 
         $this->post('/prepararPedido', pedidoController::class . ':prepararPedido') ->add(Middleware::class . ":validarToken");
+
+        $this->post('/terminarPedido', pedidoController::class . ':terminarPedido') ->add(Middleware::class . ":validarToken");
+
+        $this->post('/servirPedido', pedidoController::class . ':servirPedido')->add(Middleware::class . ":EsMozo")
+                                                                               ->add(Middleware::class . ":validarToken");
+        
+        $this->get('/pedirCuenta', pedidoController::class . ':pedirCuenta')->add(Middleware::class . ":EsMozo")
+                                                                            ->add(Middleware::class . ":validarToken");
+        
+        $this->get('/cobrarPedido', pedidoController::class . ':cobrarPedido')->add(Middleware::class . ":EsMozo")
+                                                                              ->add(Middleware::class . ":validarToken");;
+
     });
 };

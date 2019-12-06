@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2019 a las 05:40:31
+-- Tiempo de generación: 06-12-2019 a las 06:08:46
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -140,7 +140,7 @@ CREATE TABLE `mesas` (
 --
 
 INSERT INTO `mesas` (`id`, `codigoMesa`, `idEstadoMesa`, `updated_at`, `created_at`) VALUES
-(1, 'MESA-1', 1, '2019-12-06 08:14:48', '2019-11-16 00:01:34'),
+(1, 'MESA-1', 4, '2019-12-06 09:05:59', '2019-11-16 00:01:34'),
 (2, 'MESA-2', 1, '2019-12-06 08:23:40', '2019-11-16 06:22:56'),
 (3, 'MESA-3', 4, '2019-12-06 08:03:28', '2019-11-16 06:23:34');
 
@@ -171,7 +171,7 @@ CREATE TABLE `pedidos` (
 INSERT INTO `pedidos` (`id`, `idEstadoPedido`, `codigoPedido`, `codigoMesa`, `idEncargado`, `productos`, `nombreCliente`, `imagen`, `tiempo`, `updated_at`, `created_at`) VALUES
 (1, 5, 'BVPRW', 'MESA-3', 5, '1,1,1,7,8,9', 'Caludio', NULL, 0, '2019-12-03 01:50:02', '2019-12-03 01:48:15'),
 (2, 5, 'AtQtR', 'MESA-3', 5, '1,1,1,7,8,9', 'Caludio', NULL, 0, '2019-12-03 02:12:48', '2019-12-03 02:09:27'),
-(7, 1, 'IyVJn', 'MESA-1', 5, '1,2,7', 'Alfredo y Gaby', 'C:\\xampp\\tmp\\phpC4E8.tmp', 27, '2019-12-06 08:19:35', '2019-12-06 08:14:48');
+(7, 5, 'IyVJn', 'MESA-1', 5, '1,2,7', 'Alfredo y Gaby', 'C:\\xampp\\tmp\\phpC4E8.tmp', 0, '2019-12-06 09:05:59', '2019-12-06 08:14:48');
 
 -- --------------------------------------------------------
 
@@ -245,9 +245,9 @@ INSERT INTO `productos_pedidos` (`id`, `codigoPedido`, `idProducto`, `idEstadoPr
 (10, 'AtQtR', 7, 4, '2019-12-03 02:11:56', '2019-12-03 02:09:27'),
 (11, 'AtQtR', 8, 4, '2019-12-03 02:11:56', '2019-12-03 02:09:27'),
 (12, 'AtQtR', 9, 4, '2019-12-03 02:11:56', '2019-12-03 02:09:27'),
-(25, 'IyVJn', 1, 1, '2019-12-06 08:19:35', '2019-12-06 08:19:35'),
-(26, 'IyVJn', 2, 1, '2019-12-06 08:19:35', '2019-12-06 08:19:35'),
-(27, 'IyVJn', 7, 1, '2019-12-06 08:19:35', '2019-12-06 08:19:35');
+(25, 'IyVJn', 1, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35'),
+(26, 'IyVJn', 2, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35'),
+(27, 'IyVJn', 7, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35');
 
 -- --------------------------------------------------------
 
@@ -295,7 +295,8 @@ CREATE TABLE `tickets` (
 
 INSERT INTO `tickets` (`id`, `precioTotal`, `codigoPedido`, `encargado`, `mesa`, `updated_at`, `created_at`) VALUES
 (1, 2550, 'BVPRW', 'legea', 'MESA-3', '2019-12-03 01:50:02', '2019-12-03 01:50:02'),
-(2, 2550, 'AtQtR', 'legea', 'MESA-3', '2019-12-03 02:12:48', '2019-12-03 02:12:48');
+(2, 2550, 'AtQtR', 'legea', 'MESA-3', '2019-12-03 02:12:48', '2019-12-03 02:12:48'),
+(3, 460, 'IyVJn', 'ElBocho', 'MESA-1', '2019-12-06 09:05:59', '2019-12-06 09:05:59');
 
 --
 -- Índices para tablas volcadas
@@ -423,7 +424,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

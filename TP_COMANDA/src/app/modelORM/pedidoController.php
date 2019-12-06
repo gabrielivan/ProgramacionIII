@@ -5,10 +5,12 @@ namespace App\Models\ORM;
 use App\Models\AutentificadorJWT;
 use App\Models\ORM\Pedido;
 use App\Models\ORM\mesaController;
+use App\Models\ORM\Ticket;
 use \stdClass;
 
 include_once __DIR__ . '/pedido.php';
 include_once __DIR__ . '/producto.php';
+include_once __DIR__ . '/ticket.php';
 include_once __DIR__ . '/mesaController.php';
 include_once __DIR__ . '/pedido_producto.php';
 
@@ -244,6 +246,107 @@ class pedidoController
     } else {
       $newResponse = $response->withJson("No habia pedidos o ya fueron tomados para preparar", 200);
     }
+    return $newResponse;
+  }
+
+  public function terminarPedido($request, $response, $args)
+  {
+    $token = $request->getHeader('token');
+    $arrayDeParametros = $request->getParsedBody();
+    $datos = AutentificadorJWT::ObtenerData($token[0]);
+    $respuesta = pedido_productoController::cambiarEstado($arrayDeParametros["codigoPedido"], $datos->idRol, 2, 3);
+
+    if($respuesta) {
+      $data = pedido_producto::where('codigoPedido', $arrayDeParametros["codigoPedido"])->get();
+      $completo = true;
+      foreach ($data as $value) {
+        if ($value->idEstadoProducto != 3) {
+          $completo = false;
+        }
+      }
+      if ($completo) {
+        pedidoController::cambiarEstado($arrayDeParametros["codigoPedido"], 3);
+        pedido_productoController::cambiarEstado($arrayDeParametros["codigoPedido"], $datos->idRol, 2, 3);
+        $newResponse = $response->withJson("Se preparon todos los productos. Pedido listo para servir", 200);
+      } 
+      else {
+        $newResponse = $response->withJson("Se finalizó la preparacion de los productos", 200);
+      }
+    } else {
+      $newResponse = $response->withJson("No hay productos pendiente para este pedido", 200);
+    }
+    return $newResponse;
+  }
+
+  public function servirPedido($request, $response, $args)
+  {
+    $arrayDeParametros = $request->getParsedBody();
+    $pedido = Pedido::where('codigoPedido', $arrayDeParametros["codigoPedido"])->first();
+    if($pedido->idEstadoPedido == 3) {
+      $pedido = pedido::where('codigoPedido', '=', $arrayDeParametros["codigoPedido"])->first();
+      mesaController::cambiarEstado($pedido->codigoMesa, 2);
+
+      pedidoController::cambiarEstado($arrayDeParametros["codigoPedido"], 4);
+
+      pedido_productoController::cambiarEstado($arrayDeParametros["codigoPedido"], 3, 3, 4);
+
+      $newResponse = $response->withJson("Pedido entregado", 200);
+    } else {
+      $newResponse = $response->withJson("El pedido no esta listo para ser entregado", 200);
+    }
+    return $newResponse;
+  }
+
+  public function pedirCuenta($request, $response, $args)
+  {
+    $total = 0;
+    $arrayDeParametros = $request->getParams();
+    $pedido = Pedido::where('codigoPedido', '=', $arrayDeParametros['codigoPedido'])->first();
+    $productos = pedido_producto::join('productos', 'productos.id', 'productos_pedidos.idProducto')
+      ->where('codigoPedido', '=', $arrayDeParametros['codigoPedido'])->get();
+    $ticket = [];
+    foreach ($productos as $producto) {
+      $prod = new \stdClass;
+      $prod->producto = $producto->descripcion;
+      $prod->precio = $producto->precio;
+      $total = $total + $producto->precio;
+      array_push($ticket, $prod);
+    }
+    $cuenta = new \stdClass;
+    $cuenta->nombreCliente = $pedido->nombreCliente;
+    $cuenta->ticket = $pedido->codigoPedido;
+    $cuenta->pedido = $ticket;
+    $cuenta->total = $total;
+    $nuevoRetorno = $response->withJson($cuenta, 200);
+    mesaController::cambiarEstado($pedido->codigoMesa, 3);
+    return $nuevoRetorno;
+  }
+
+  public function cobrarPedido($request, $response, $args)
+  {
+    $total = 0;
+    $arrayDeParametros = $request->getParams();
+    $pedido = Pedido::where('codigoPedido', '=', $arrayDeParametros['codigoPedido'])->first();
+    if ($pedido != null && $pedido->idEstadoPedido == 4) {
+      $ticket = new Ticket();
+      $ticket->codigoPedido = $pedido->codigoPedido;
+      $productos = pedido_producto::join('productos', 'productos.id', 'productos_pedidos.idProducto')
+        ->where('codigoPedido', '=', $arrayDeParametros['codigoPedido'])->get();
+      foreach ($productos as $producto) {
+        $total = $total + $producto->precio;
+      }
+      $ticket->precioTotal = $total;
+      $ticket->mesa = $pedido->codigoMesa;
+      $encargado = Encargado::where('id', '=', $pedido->idEncargado)->first();
+      $ticket->encargado = $encargado->usuario;
+      $ticket->save();
+      pedidoController::cambiarEstado($arrayDeParametros['codigoPedido'], 5); //cobrado
+      mesaController::cambiarEstado($pedido->codigoMesa, 4); //cerrada
+      $newResponse = $response->withJson("Pedido cobrado - Mesa Cerrada", 200);
+    } else {
+      $newResponse = $response->withJson("Pedido no encontrado", 200);
+    }
+
     return $newResponse;
   }
 }
