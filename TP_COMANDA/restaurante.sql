@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2019 a las 06:08:46
+-- Tiempo de generación: 08-12-2019 a las 00:31:26
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -140,9 +140,9 @@ CREATE TABLE `mesas` (
 --
 
 INSERT INTO `mesas` (`id`, `codigoMesa`, `idEstadoMesa`, `updated_at`, `created_at`) VALUES
-(1, 'MESA-1', 4, '2019-12-06 09:05:59', '2019-11-16 00:01:34'),
-(2, 'MESA-2', 1, '2019-12-06 08:23:40', '2019-11-16 06:22:56'),
-(3, 'MESA-3', 4, '2019-12-06 08:03:28', '2019-11-16 06:23:34');
+(1, 'MESA-1', 4, '2019-12-08 03:28:09', '2019-11-16 00:01:34'),
+(2, 'MESA-2', 4, '2019-12-06 08:23:40', '2019-11-16 06:22:56'),
+(3, 'MESA-3', 4, '2019-12-08 01:04:06', '2019-11-16 06:23:34');
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,8 @@ CREATE TABLE `pedidos` (
 INSERT INTO `pedidos` (`id`, `idEstadoPedido`, `codigoPedido`, `codigoMesa`, `idEncargado`, `productos`, `nombreCliente`, `imagen`, `tiempo`, `updated_at`, `created_at`) VALUES
 (1, 5, 'BVPRW', 'MESA-3', 5, '1,1,1,7,8,9', 'Caludio', NULL, 0, '2019-12-03 01:50:02', '2019-12-03 01:48:15'),
 (2, 5, 'AtQtR', 'MESA-3', 5, '1,1,1,7,8,9', 'Caludio', NULL, 0, '2019-12-03 02:12:48', '2019-12-03 02:09:27'),
-(7, 5, 'IyVJn', 'MESA-1', 5, '1,2,7', 'Alfredo y Gaby', 'C:\\xampp\\tmp\\phpC4E8.tmp', 0, '2019-12-06 09:05:59', '2019-12-06 08:14:48');
+(7, 5, 'IyVJn', 'MESA-1', 5, '1,2,7', 'Alfredo y Gaby', 'C:\\xampp\\tmp\\phpC4E8.tmp', 0, '2019-12-06 09:05:59', '2019-12-06 08:14:48'),
+(9, 5, 'nlAcr', 'MESA-1', 6, '1,10,20,12,2', 'Cris y Ailen', 'C:\\xampp\\tmp\\php2C15.tmp', 0, '2019-12-08 03:28:09', '2019-12-08 03:11:40');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,6 @@ INSERT INTO `pedidos` (`id`, `idEstadoPedido`, `codigoPedido`, `codigoMesa`, `id
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
-  `tipo` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `precio` int(10) NOT NULL,
   `idRol` int(11) NOT NULL,
   `tiempoPreparacion` int(11) NOT NULL,
@@ -194,24 +194,25 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `descripcion`, `tipo`, `precio`, `idRol`, `tiempoPreparacion`, `updated_at`, `created_at`) VALUES
-(1, 'Coca Cola', 'bebida', 90, 5, 3, '2019-11-12 19:39:49', '2019-11-12 15:39:49'),
-(2, 'Sprite', 'bebida', 90, 5, 3, '2019-11-12 19:40:12', '2019-11-12 15:40:12'),
-(3, 'Aquarius', 'bebida', 90, 5, 3, '2019-11-12 19:40:31', '2019-11-12 15:40:31'),
-(4, 'Cafe', 'bebida', 110, 5, 5, '2019-11-12 19:41:32', '2019-11-12 15:41:32'),
-(5, 'Te', 'bebida', 100, 5, 3, '2019-11-12 19:41:44', '2019-11-12 15:41:44'),
-(6, 'Agua', 'bebida', 90, 5, 3, '2019-11-12 19:41:56', '2019-11-12 15:41:56'),
-(7, 'Milanesa con papas fritas', 'comida', 280, 1, 15, '2019-11-12 19:42:14', '2019-11-12 15:42:14'),
-(8, 'Bife de lomo con verduras', 'comida', 300, 1, 22, '2019-11-12 19:42:23', '2019-11-12 15:42:23'),
-(9, 'Pulpo a la gallega', 'comida', 1700, 1, 45, '2019-11-12 19:42:31', '2019-11-12 15:42:31'),
-(10, 'Pollo para dos', 'comida', 480, 1, 15, '2019-11-12 19:42:40', '2019-11-12 15:42:40'),
-(11, 'Vino tinto', 'vino', 300, 4, 6, '2019-11-12 19:43:05', '2019-11-12 15:43:05'),
-(12, 'Papitas', 'comida', 187, 1, 40, '2019-11-12 19:43:19', '2019-11-12 15:43:19'),
-(14, 'Esperma de Pitufo', 'trago', 300, 4, 3, '2019-11-12 19:43:35', '2019-11-12 15:43:35'),
-(15, 'Cerveza', 'cerveza', 150, 2, 6, '2019-11-12 19:43:51', '2019-11-12 15:43:51'),
-(16, 'Rabas', 'comida', 220, 1, 30, '2019-11-12 19:44:11', '2019-11-12 15:44:11'),
-(17, 'Lengua la vinagreta', 'comida', 187, 1, 40, '2019-11-12 19:44:24', '2019-11-12 15:44:24'),
-(18, 'Pure con churrasco\n', 'comida', 180, 1, 12, '2019-11-12 19:44:26', '2019-11-12 15:44:26');
+INSERT INTO `productos` (`id`, `descripcion`, `precio`, `idRol`, `tiempoPreparacion`, `updated_at`, `created_at`) VALUES
+(1, 'Coca Cola', 90, 5, 3, '2019-11-12 19:39:49', '2019-11-12 15:39:49'),
+(2, 'Sprite', 90, 5, 3, '2019-11-12 19:40:12', '2019-11-12 15:40:12'),
+(3, 'Aquarius', 90, 5, 3, '2019-11-12 19:40:31', '2019-11-12 15:40:31'),
+(4, 'Cafe', 110, 5, 5, '2019-11-12 19:41:32', '2019-11-12 15:41:32'),
+(5, 'Te', 100, 5, 3, '2019-11-12 19:41:44', '2019-11-12 15:41:44'),
+(6, 'Agua', 90, 5, 3, '2019-11-12 19:41:56', '2019-11-12 15:41:56'),
+(7, 'Milanesa con papas fritas', 280, 1, 15, '2019-11-12 19:42:14', '2019-11-12 15:42:14'),
+(8, 'Bife de lomo con verduras', 300, 1, 22, '2019-11-12 19:42:23', '2019-11-12 15:42:23'),
+(9, 'Pulpo a la gallega', 1700, 1, 45, '2019-11-12 19:42:31', '2019-11-12 15:42:31'),
+(10, 'Pollo para dos', 480, 1, 15, '2019-11-12 19:42:40', '2019-11-12 15:42:40'),
+(11, 'Vino tinto', 300, 4, 6, '2019-11-12 19:43:05', '2019-11-12 15:43:05'),
+(12, 'Papitas', 187, 1, 40, '2019-11-12 19:43:19', '2019-11-12 15:43:19'),
+(14, 'Esperma de Pitufo', 300, 4, 3, '2019-11-12 19:43:35', '2019-11-12 15:43:35'),
+(15, 'Cerveza', 150, 2, 6, '2019-11-12 19:43:51', '2019-11-12 15:43:51'),
+(16, 'Rabas', 220, 1, 30, '2019-11-12 19:44:11', '2019-11-12 15:44:11'),
+(17, 'Lengua la vinagreta', 187, 1, 40, '2019-11-12 19:44:24', '2019-11-12 15:44:24'),
+(18, 'Pure con churrasco\n', 180, 1, 12, '2019-11-12 19:44:26', '2019-11-12 15:44:26'),
+(20, 'Cerveza rubia', 120, 2, 2, '2019-12-08 03:22:11', '2019-12-07 23:22:11');
 
 -- --------------------------------------------------------
 
@@ -247,7 +248,12 @@ INSERT INTO `productos_pedidos` (`id`, `codigoPedido`, `idProducto`, `idEstadoPr
 (12, 'AtQtR', 9, 4, '2019-12-03 02:11:56', '2019-12-03 02:09:27'),
 (25, 'IyVJn', 1, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35'),
 (26, 'IyVJn', 2, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35'),
-(27, 'IyVJn', 7, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35');
+(27, 'IyVJn', 7, 4, '2019-12-06 08:52:41', '2019-12-06 08:19:35'),
+(35, 'nlAcr', 1, 4, '2019-12-08 03:25:26', '2019-12-08 03:16:28'),
+(36, 'nlAcr', 10, 4, '2019-12-08 03:25:26', '2019-12-08 03:16:28'),
+(37, 'nlAcr', 20, 4, '2019-12-08 03:25:26', '2019-12-08 03:16:28'),
+(38, 'nlAcr', 12, 4, '2019-12-08 03:25:26', '2019-12-08 03:16:28'),
+(39, 'nlAcr', 2, 4, '2019-12-08 03:25:26', '2019-12-08 03:16:28');
 
 -- --------------------------------------------------------
 
@@ -296,7 +302,8 @@ CREATE TABLE `tickets` (
 INSERT INTO `tickets` (`id`, `precioTotal`, `codigoPedido`, `encargado`, `mesa`, `updated_at`, `created_at`) VALUES
 (1, 2550, 'BVPRW', 'legea', 'MESA-3', '2019-12-03 01:50:02', '2019-12-03 01:50:02'),
 (2, 2550, 'AtQtR', 'legea', 'MESA-3', '2019-12-03 02:12:48', '2019-12-03 02:12:48'),
-(3, 460, 'IyVJn', 'ElBocho', 'MESA-1', '2019-12-06 09:05:59', '2019-12-06 09:05:59');
+(3, 460, 'IyVJn', 'ElBocho', 'MESA-1', '2019-12-06 09:05:59', '2019-12-06 09:05:59'),
+(4, 967, 'nlAcr', 'gaby.ivan', 'MESA-1', '2019-12-08 03:28:09', '2019-12-08 03:28:09');
 
 --
 -- Índices para tablas volcadas
@@ -370,7 +377,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT de la tabla `encargados`
 --
 ALTER TABLE `encargados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `estados_mesa`
@@ -394,25 +401,25 @@ ALTER TABLE `estados_productos`
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_pedidos`
 --
 ALTER TABLE `productos_pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -424,7 +431,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
