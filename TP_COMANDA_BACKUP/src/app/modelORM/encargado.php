@@ -6,7 +6,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 
-class encargado extends \Illuminate\Database\Eloquent\Model {  
+class Encargado extends \Illuminate\Database\Eloquent\Model {  
     protected $nombre;
     protected $apellido;
     protected $idRol;

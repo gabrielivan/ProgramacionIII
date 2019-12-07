@@ -10,11 +10,14 @@ return function (App $app) {
 
     $app->group('/productos', function () {
 
-        $this->post('/altaProducto', productoController::class . ':altaProducto');
+        $this->post('/altaProducto', productoController::class . ':altaProducto')->add(Middleware::class . ":EsSocio")
+                                                                                  ->add(Middleware::class . ":validarToken");
 
-        $this->post('/bajaProducto', productoController::class . ':bajaProducto');
+        $this->post('/bajaProducto', productoController::class . ':bajaProducto')->add(Middleware::class . ":EsSocio")
+                                                                                  ->add(Middleware::class . ":validarToken");
 
-        $this->post('/modificarProducto', productoController::class . ':modificarProducto');
+        $this->post('/modificarProducto', productoController::class . ':modificarProducto')->add(Middleware::class . ":EsSocio")
+                                                                                            ->add(Middleware::class . ":validarToken");
 
         $this->get('/traerProductos', productoController::class . ':traerProductos');
 
