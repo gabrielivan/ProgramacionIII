@@ -1,29 +1,46 @@
 <?php
 
 namespace App\Models\ORM;
+
+use App\Models\AutentificadorJWT;
 use App\Models\ORM\Producto;
 use App\Models\ORM\pedido_producto;
-// include_once __DIR__ . '/ticket_producto.php';
+use App\Models\ORM\Roles;
+
+include_once __DIR__ . '/pedido_producto.php';
+include_once __DIR__ . '/producto.php';
+include_once __DIR__ . '/roles.php';
 
 class pedido_productoController
 {
-    public function verPendientes($codigo,$encargadoID){
-        if($encargadoID==5){
-            $data=pedido_producto::join('productos','ticket_productos.producto','productos.id')
-            ->join('roles','roles.id','productos.encargado')
-            ->where('ticket_productos.estado','=','1')
-            ->where('codigo','=',$codigo)
-            ->get();    
-        }else{
-            $data=pedido_producto::join('productos','ticket_productos.producto','productos.id')
-            ->join('roles','roles.id','productos.encargado')
-            ->where('ticket_productos.estado','=','1')
-            ->where('productos.encargado','=',$encargadoID)
-            ->where('codigo','=',$codigo)
-            //->select(array('codigo','descripcion','puesto'))
-            ->get();
+    public function verPedidosPendientes($request,$response,$args)
+    {
+        $arrayDeParametros = $request->getParams();
+        $token = $request->getHeader('token');
+        $token = AutentificadorJWT::ObtenerData($token[0]);
+        $idEncargado = $token->idRol;
+        $codigoPedido = $arrayDeParametros['codigoPedido'];
+
+        $rol = Roles::select('cargo')->where('roles.id', '=', $idEncargado)->get()->toArray();
+        $rol = $rol[0]["cargo"];
+        if ($rol == "socio") {
+            $data = pedido_producto::join('productos', 'productos_pedidos.idProducto', 'productos.id')
+                ->join('roles', 'roles.id', 'productos.idRol')
+                ->where('productos_pedidos.idEstadoProducto', '=', '1')
+                ->where('codigoPedido', '=', $codigoPedido)
+                ->select('codigoPedido', 'productos.descripcion', 'cargo')
+                ->get();
+        } else {
+            $data = pedido_producto::join('productos', 'productos_pedidos.idProducto', 'productos.id')
+                ->join('roles', 'roles.id', 'productos.idRol')
+                ->where('productos_pedidos.idEstadoProducto', '=', '1')
+                ->where('productos.idRol', '=', $idEncargado)
+                ->where('codigoPedido', '=', $codigoPedido)
+                ->select('codigoPedido', 'productos.descripcion', 'cargo')
+                ->get();
         }
-        return $data;
+        $newResponse = $response->withJson($data, 200);  
+        return $newResponse;
     }
 
     public function cambiarEstado($codigo, $encargadoID, $estadoInicial, $estadoactual)

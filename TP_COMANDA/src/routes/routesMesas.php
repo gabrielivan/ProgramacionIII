@@ -26,5 +26,20 @@ return function (App $app) {
         
         $this->get('/obtenerMesaLibre', mesaController::class . ':obtenerMesaLibre')->add(Middleware::class . ":EsMozo")
                                                                                     ->add(Middleware::class . ":validarToken");
+
+        ////////////////////////////////INFORMES////////////////////////////////////////////
+
+        $this->get('/traerMesaMasUsada', mesaController::class . ':traerMesaMasUsada');
+        
+        $this->get('/traerMesaMenosUsada', mesaController::class . ':traerMesaMenosUsada');
+
+        $this->get('/traerMesaConElMayorImporte', mesaController::class . ':traerMesaConElMayorImporte');
+        
+        $this->get('/traerMesaConElMenorImporte', mesaController::class . ':traerMesaConElMenorImporte');
+        
+        // $this->get('/traerMesaQueMasFacturo', mesaController::class . ':traerMesaQueMasFacturo');
+        
+        // $this->get('/traerMesaQueMenosFacturo', mesaController::class . ':traerMesaQueMenosFacturo');
+        
     });
 };

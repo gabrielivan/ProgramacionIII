@@ -16,11 +16,11 @@ return function (App $app) {
         $this->post('/altaPedido', pedidoController::class . ':altaPedido')->add(Middleware::class . ":EsMozo")
                                                                            ->add(Middleware::class . ":validarToken");
 
-        $this->get('/verPendientes', pedido_productoController::class . ':verPedidosPendientes');
-
-        $this->post('/bajaPedido', pedidoController::class . ':bajaPedido');
+        $this->post('/bajaPedido', pedidoController::class . ':bajaPedido')->add(Middleware::class . ":EsMozo")
+                                                                           ->add(Middleware::class . ":validarToken");
         
-        $this->post('/modificarPedido', pedidoController::class . ':modificarPedido');
+        $this->post('/modificarPedido', pedidoController::class . ':modificarPedido')->add(Middleware::class . ":EsMozo")
+                                                                                     ->add(Middleware::class . ":validarToken");
         
         $this->get('/traerPedidos', pedidoController::class . ':traerPedidos');
         
@@ -37,7 +37,9 @@ return function (App $app) {
                                                                             ->add(Middleware::class . ":validarToken");
         
         $this->get('/cobrarPedido', pedidoController::class . ':cobrarPedido')->add(Middleware::class . ":EsMozo")
-                                                                              ->add(Middleware::class . ":validarToken");;
+                                                                              ->add(Middleware::class . ":validarToken");
+        
+        $this->get('/verPendientes', pedido_productoController::class . ':verPedidosPendientes')->add(Middleware::class . ":validarToken");
 
     });
 };

@@ -16,9 +16,11 @@ return function (App $app) {
         $this->post('/altaEncargado', encargadoController::class . ':altaEncargado')->add(Middleware::class . ":EsSocio")
                                                                                     ->add(Middleware::class . ":validarToken");
 
-        $this->post('/bajaEncargado', encargadoController::class . ':bajaEncargado');
+        $this->post('/bajaEncargado', encargadoController::class . ':bajaEncargado')->add(Middleware::class . ":EsSocio")
+                                                                                    ->add(Middleware::class . ":validarToken");
         
-        $this->post('/modificarEncargado', encargadoController::class . ':modificarEncargado');
+        $this->post('/modificarEncargado', encargadoController::class . ':modificarEncargado')->add(Middleware::class . ":EsSocio")
+                                                                                              ->add(Middleware::class . ":validarToken");
         
         $this->get('/traerEncargados', encargadoController::class . ':traerEncargados');
         

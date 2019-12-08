@@ -130,4 +130,126 @@ class mesaController
           }
         return $newResponse;
     }
+
+    ////////////////////////////////INFORMES////////////////////////////////////////////
+    public function traerMesaMasUsada($request, $response, $args)
+    {
+        $mesasIguales = false;
+        $codigosMesa = [];
+        $mayor = 0;
+        $mesaMasUsada = "";
+        $pedidos = Pedido::all();
+        foreach ($pedidos as $pedido) {
+            array_push($codigosMesa, $pedido->codigoMesa);
+        }
+
+        $valores = array_count_values($codigosMesa);
+        
+        foreach ($valores as $key => $value){
+            if($value > $mayor){
+                $mayor = $value;
+                $mesaMasUsada = $key;
+                $mesasIguales = false;
+            }
+            elseif($value == $mayor){
+                $mesasIguales = true;
+            }
+        }
+        if($mesasIguales == false){
+            $newResponse = $response->withJson("La mesa mas usada es la: " .$mesaMasUsada, 200);
+        }
+        else{
+            $newResponse = $response->withJson("No hay una mesa que se haya usado mas que la otra", 200);
+        }
+        return $newResponse;
+    }
+
+    public function traerMesaMenosUsada($request, $response, $args)
+    {
+        $mesasIguales = false;
+        $primerVuelta = true;
+        $codigosMesa = [];
+        $menor = "";
+        $mesaMenosUsada = "";
+        $pedidos = Pedido::all();
+        foreach ($pedidos as $pedido) {
+            array_push($codigosMesa, $pedido->codigoMesa);
+        }
+
+        $valores = array_count_values($codigosMesa);
+        
+        foreach ($valores as $key => $value){
+            if($value < $menor || $primerVuelta == true){
+                $menor = $value;
+                $mesaMenosUsada = $key;
+                $primerVuelta = false;
+                $mesasIguales = false;
+            }
+            elseif($value == $menor){
+                $mesasIguales = true;
+            }
+        }
+        if($mesasIguales == false){
+            $newResponse = $response->withJson("La mesa menos usada es la: " .$mesaMenosUsada, 200);
+        }
+        else{
+            $newResponse = $response->withJson("No hay una mesa que se haya usado menos que la otra", 200);
+        }
+        return $newResponse;
+    }
+    
+    public function traerMesaConElMayorImporte($request, $response, $args)
+    {
+        $mesasIguales = false;
+        $mayor = 0;
+        $mesaQueMasFacturo = "";
+        $tickets = Ticket::all();
+        
+        foreach ($tickets as $ticket) {
+            if($ticket->precioTotal > $mayor){
+                $mayor = $ticket->precioTotal;
+                $mesaQueMasFacturo = $ticket->mesa;
+                $mesasIguales = false;
+            }
+            elseif($ticket->precioTotal == $mayor){
+                $mesasIguales = true;
+            }
+        }
+        if($mesasIguales == false){
+            $newResponse = $response->withJson("La mesa que mas facturo es la: " .$mesaQueMasFacturo. " y la cantidad es de: ".$mayor, 200);
+        }
+        else{
+            $newResponse = $response->withJson("No hay una mesa que haya facturado mas que la otra", 200);
+        }
+        return $newResponse;
+    }
+
+    public function traerMesaConElMenorImporte($request, $response, $args)
+    {
+        $primerVuelta = true;
+        $mesasIguales = false;
+        $menor = "";
+        $mesaQueMenosFacturo = "";
+        $tickets = Ticket::all();
+        
+        foreach ($tickets as $ticket) {
+            if($ticket->precioTotal < $menor || $primerVuelta == true){
+                $menor = $ticket->precioTotal;
+                $mesaQueMenosFacturo = $ticket->mesa;
+                $mesasIguales = false;
+                $primerVuelta = false;
+            }
+            elseif($ticket->precioTotal == $menor){
+                $mesasIguales = true;
+            }
+        }
+        if($mesasIguales == false){
+            $newResponse = $response->withJson("La mesa que menos facturo es la: " .$mesaQueMenosFacturo. " y la cantidad es de: ".$menor, 200);
+        }
+        else{
+            $newResponse = $response->withJson("No hay una mesa que haya facturado menos que la otra", 200);
+        }
+        return $newResponse;
+    }
+
 }
