@@ -4,9 +4,11 @@ use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Models\AutentificadorJWT;
+use App\Models\ORM\Log;
 
 
 include_once __DIR__ . './app/modelAPI/AutentificadorJWT.php';
+include_once __DIR__ . '/app/modelORM/log.php';
 
 return function (App $app) {
   
@@ -182,7 +184,35 @@ class Middleware
         return $newResponse;
     }
 
-
+	public function log($request, $response, $next)
+	{
+		$token = $request->getHeader('token');
+		$usuario = "";
+		
+		if (count((array)$token) > 0) {
+			try {
+				$data = AutentificadorJWT::ObtenerData($token[0]);
+				if ($data->usuario != null) {
+					$usuario = $data->usuario;
+				}
+			} catch (Exception $e) {
+				$newResponse = $response->withJson("Token invalido", 200);
+			}
+		}
+		$ruta = $request->getRequestTarget();
+		$metodo = $request->getMethod();
+		$ip = $request->getServerParam('REMOTE_ADDR');
+		$fecha = date('Y-m-d H:i:s', $request->getServerParam('REQUEST_TIME'));
+		$log = new Log;
+		$log->ruta = $ruta;
+		$log->metodo = $metodo;
+		$log->usuario = $usuario;
+		$log->ip = $ip;
+		$log->fecha = $fecha;
+		$log->save();
+		$newResponse = $next($request, $response);
+		return $newResponse;
+	}
 
 }
 

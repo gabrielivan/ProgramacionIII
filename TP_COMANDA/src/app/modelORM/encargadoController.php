@@ -141,4 +141,12 @@ class encargadoController {
         }
         return $newResponse;
     }
+
+    /////////////////////////////////INFORMES////////////////////////////////////////////
+
+    public function traerOperacionesDeTodosLosEncargados($request, $response, $args){
+        $OperacionesDeTodosLosEncargados = Log::all();
+        $newResponse = $response->withJson($OperacionesDeTodosLosEncargados, 200);  
+        return $newResponse;
+    }
 }
