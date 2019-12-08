@@ -349,4 +349,78 @@ class pedidoController
 
     return $newResponse;
   }
+
+   ////////////////////////////////INFORMES////////////////////////////////////////////
+
+   public function traerLoQueMasSeVendio($request, $response, $args)
+   {
+       $productosIguales = false;
+       $idsProductos = [];
+       $mayor = 0;
+       $productoMasVendido = "";
+       $productosPedidos = pedido_producto::all();
+       foreach ($productosPedidos as $pedido) {
+           array_push($idsProductos, $pedido->idProducto);
+       }
+
+       $valores = array_count_values($idsProductos);
+       
+       foreach ($valores as $key => $value){
+           if($value > $mayor){
+               $mayor = $value;
+               $productoMasVendido = $key;
+               $productosIguales = false;
+           }
+           elseif($value == $mayor){
+               $productosIguales = true;
+           }
+       }
+
+       $productoMasVendido = Producto::find($productoMasVendido);
+
+       if($productosIguales == false){
+           $newResponse = $response->withJson("El producto mas vendido es: " .$productoMasVendido->descripcion, 200);
+       }
+       else{
+           $newResponse = $response->withJson("No hay un producto que se haya vendido mas que el otro", 200);
+       }
+       return $newResponse;
+   }
+
+   public function traerLoQueMenosSeVendio($request, $response, $args)
+   {
+       $productosIguales = false;
+       $primeraVuelta = true;
+       $idsProductos = [];
+       $menor = "";
+       $productoMenosVendido = "";
+       $productosPedidos = pedido_producto::all();
+       foreach ($productosPedidos as $pedido) {
+           array_push($idsProductos, $pedido->idProducto);
+       }
+
+       $valores = array_count_values($idsProductos);
+       
+       foreach ($valores as $key => $value){
+           if($value < $menor || $primeraVuelta == true){
+               $menor = $value;
+               $productoMenosVendido = $key;
+               $productosIguales = false;
+               $primeraVuelta = false;
+           }
+           elseif($value == $menor){
+               $productosIguales = true;
+           }
+       }
+
+       $productoMenosVendido = Producto::find($productoMenosVendido);
+
+       if($productosIguales == false){
+           $newResponse = $response->withJson("El producto menos vendido es: " .$productoMenosVendido->descripcion, 200);
+       }
+       else{
+           $newResponse = $response->withJson("No hay un producto que se haya vendido menos que el otro", 200);
+       }
+       return $newResponse;
+   }
 }

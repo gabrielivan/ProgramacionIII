@@ -41,5 +41,11 @@ return function (App $app) {
         
         $this->get('/verPendientes', pedido_productoController::class . ':verPedidosPendientes')->add(Middleware::class . ":validarToken");
 
+        /////////////////////////////////INFORMES////////////////////////////////////////////
+        
+        $this->get('/traerLoQueMasSeVendio', pedidoController::class . ':traerLoQueMasSeVendio');
+        
+        $this->get('/traerLoQueMenosSeVendio', pedidoController::class . ':traerLoQueMenosSeVendio');
+
     });
 };
