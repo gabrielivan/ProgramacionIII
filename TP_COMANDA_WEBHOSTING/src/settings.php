@@ -27,26 +27,26 @@ return [
         ],
 
         // eloquent settings
-        'db' => [
-           'driver' => 'mysql',
-            'host' => 'localhost',
-            'database' => 'restaurante',
-             'username' => 'root',
-             'password' => '',
+        // 'db' => [
+           // 'driver' => 'mysql',
+            // 'host' => 'localhost',
+            // 'database' => 'restaurante',
+             // 'username' => 'root',
+             // 'password' => '',
+             // 'charset'   => 'utf8',
+             // 'collation' => 'utf8_unicode_ci',
+             // 'prefix'    => '',
+        // ],
+		'db' => [
+             'driver' => 'mysql',
+             'host' => 'localhost',
+             'database' => 'id11875528_restaurante',
+             'username' => 'id11875528_gabriel',
+             'password' => '---',
              'charset'   => 'utf8',
              'collation' => 'utf8_unicode_ci',
              'prefix'    => '',
-        ],
-		   // 'db' => [
-           // 'driver' => 'mysql',
-            // 'host' => 'localhost',
-            // 'database' => 'id11875528_restaurante',
-            // 'username' => 'id11875528_gabriel',
-            // 'password' => 'martin garrix 100',
-            // 'charset'   => 'utf8',
-            // 'collation' => 'utf8_unicode_ci',
-            // 'prefix'    => '',
-        // ],
+         ],
 
     ],
 ];
